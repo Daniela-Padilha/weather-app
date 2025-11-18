@@ -43,6 +43,7 @@ hi {
 	font-size: 16px;
 	width: 5em;
 	cursor: pointer;
+	margin-left: 10px;
 }
 
 #wrapper {
