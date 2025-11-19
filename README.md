@@ -1,6 +1,6 @@
 # Weather App (Totoro themed)
 
-<img width="1907" height="864" alt="image" src="https://github.com/user-attachments/assets/2bb5e88b-8166-4221-b9e8-e5b527b6b3a3" />
+<img width="1915" height="957" alt="image" src="https://github.com/user-attachments/assets/4a5bc579-995d-4c65-ae79-7e3f2a224126" />
 
 
 # 🌦️ Weather App
@@ -58,9 +58,7 @@ The goal of this project was to practice core web development skills and learn h
 
 3. The app receives JSON data about the weather.
 
-4. The temperature is converted from Kelvin to Celsius.
-
-5. The UI updates using DOM manipulation.
+4. The UI updates using DOM manipulation.
 
 # ⚠️ Note About API Key
 
