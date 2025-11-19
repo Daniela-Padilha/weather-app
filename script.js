@@ -40,23 +40,36 @@ async function fetchWeather() {
 	}
 
 	async function getWeatherData(lon, lat) {
-		const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`);
+		const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`);
 		if (!response.ok)
 		{
 			console.log("Bad response: ", response.status);
 			return ;
 		}
+		
 		const data = await response.json();
 		weatherData.style.display = "flex";
-		weatherData.innerHTML = `
-		<img src=" https://openweathermap.org/img/wn/${data.weather[0].icon}.png" alt="${data.weather[0].icon}" width="100" />
-		<div>
-			<h2>${data.name}</h2>
-			<p><b>Temperature:</b> ${Math.round(data.main.temp - 273.15)}°C</p>
-			<p><b>Description:</b> ${data.weather[0].description}</p>
-		</div>
-		`;
+		const dayData = document.querySelectorAll("#data .day");
+		const indexes =[0, 8, 16, 24, 32];
+
+		for (let i = 0; i < 5; i++) {
+			const timestamp = data.list[indexes[i]].dt;
+			const date = new Date(timestamp * 1000);
+			const weekday = date.toLocaleDateString("en-US", {weekday: "long"});
+			dayData[i].style.display = "block";
+			dayData[i].innerHTML = "";
+			dayData[i].innerHTML = `
+			<img src="https://openweathermap.org/img/wn/${data.list[indexes[i]].weather[0].icon}.png" alt="${data.list[indexes[i]].weather[0].icon}" width="100" />
+			<div>
+				<h1>${weekday}</h1>
+				<h2>${data.city.name}</h2>
+				<p><b>Temperature:</b> ${Math.round(data.list[indexes[i]].main.temp)}°C</p>
+				<p><b>Description:</b> ${data.list[indexes[i]].weather[0].description}</p>
+			</div>
+			`;
+		}
 	}
+
 	document.getElementById("search-bar").value = "";
 	const geocodeData = await getLonAndLat();
 	getWeatherData(geocodeData.lon, geocodeData.lat);

@@ -19,7 +19,7 @@ main {
 	border: 1px solid;
 	border-radius: 5px;
 	min-width: 540px;
-	max-width: 50%;
+	max-width: 60%;
 	margin: auto;
 	padding: 2em;
 }
@@ -64,11 +64,23 @@ h1 {
 	padding: 1.5em;
 	margin-top: 20px;
 	text-align: center;
-	align-items: center;
-	gap: 12px;
+	align-items: flex-start;
+	gap: 10px;
 }
 
 #data > img {
 	border-radius: 50%;
 	background-color: rgb(180, 224, 251);
+
 }
+
+.day {
+	display: none;
+	min-width: 190px;
+	border-radius: 5px;
+	padding: 1.5em;
+	margin-top: 5px;
+	text-align: center;
+	align-items: center;
+}
+
