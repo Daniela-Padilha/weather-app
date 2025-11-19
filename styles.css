@@ -62,7 +62,7 @@ h1 {
 #data {
 	background-color: rgba(152, 184, 133, 0.85);
 	border-radius: 5px;
-	min-width: 540px;
+	min-width: 500px;
 	max-width: 90%;
 	padding: 1.5em;
 	margin-top: 20px;
@@ -74,7 +74,6 @@ h1 {
 
 #data > img {
 	border-radius: 50%;
-	background-color: rgb(180, 224, 251);
 }
 
 .day {

@@ -1,16 +1,24 @@
+let searchBar = document.getElementById("search-bar");
+
 async function fetchWeather() {
 	let searchInput = document.getElementById("search-bar").value;
 	const weatherData = document.getElementById("data");
+	const dayData = document.querySelectorAll("#data .day");
+	const errorDiv = document.getElementById("error-message");
 	weatherData.style.display = "block";
 	const apiKey = "d4a10ad48bdc6a75ea8bc97282e6215f";
 
-	if (searchInput == "") {
-		weatherData.innerHTML = `
+	errorDiv.innerHTML = "";
+
+	if (searchInput === "") {
+		errorDiv.style.display = "block";
+		errorDiv.innerHTML = `
 		<div>
 			<h2>Empty Input!</h2>
 			<p>Please try again with a valid <b><u>city name</u></b>.</p>
 		</div>
 		`;
+		dayData.forEach(div => div.innerHTML = "");
 		return ;
 	}
 
@@ -27,12 +35,14 @@ async function fetchWeather() {
 		if (data.length == 0)
 		{
 			console.log("Something went wrong!");
-			weatherData.innerHTML = `
+			errorDiv.style.display = "block";
+			errorDiv.innerHTML = `
 			<div>
 				<h2>Invalid Input: "${searchInput}"</h2>
 				<p>Please try again with a valid <b><u>city name</u></b>.</p>
 			</div>
 			`;
+			dayData.forEach(div => div.innerHTML = "");
 			return ;
 		}
 		else
@@ -49,7 +59,6 @@ async function fetchWeather() {
 		
 		const data = await response.json();
 		weatherData.style.display = "flex";
-		const dayData = document.querySelectorAll("#data .day");
 		const indexes =[0, 8, 16, 24, 32];
 
 		for (let i = 0; i < 5; i++) {
@@ -72,5 +81,13 @@ async function fetchWeather() {
 
 	document.getElementById("search-bar").value = "";
 	const geocodeData = await getLonAndLat();
+	if (!geocodeData)
+			return ;
 	getWeatherData(geocodeData.lon, geocodeData.lat);
-}
+};
+
+searchBar.addEventListener("keydown", (event) => {
+	if (event.key === "Enter") {
+		fetchWeather();
+	}
+});
