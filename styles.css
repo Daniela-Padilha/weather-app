@@ -24,7 +24,7 @@ main {
 	padding: 2em;
 }
 
-hi {
+h1 {
 	margin-bottom: 20px;
 }
 
@@ -56,4 +56,19 @@ hi {
 #search {
 	display: flex;
 	width: 50%;
+}
+
+#data {
+	background-color: rgba(152, 184, 133, 0.85);
+	border-radius: 5px;
+	padding: 1.5em;
+	margin-top: 20px;
+	text-align: center;
+	align-items: center;
+	gap: 12px;
+}
+
+#data > img {
+	border-radius: 50%;
+	background-color: rgb(180, 224, 251);
 }
